@@ -15,12 +15,11 @@ def make_ls_list():
     return ls_file_name
 
 
-def super_resolution(input_path, output_path, file_name):
+def copy_exif(input_path, output_path, file_name):
     input_path = input_path + file_name
     output_path = output_path + file_name
-    output_path = output_path.replace('JPG', 'png')
-    super_resolution_cmd = "exiftool -api largefilesupport=1 -tagsfromfile %s -all:all -overwrite_original %s" % (input_path, output_path)
-    print(super_resolution_cmd)
+    super_resolution_cmd = "exiftool -api largefilesupport=1 -tagsfromfile %s -all:all -overwrite_original %s" % (
+    input_path, output_path)
     proc = sp.Popen(super_resolution_cmd, shell=True, stdout=sp.PIPE, stderr=sp.PIPE)
     std_out, std_err = proc.communicate()
     print(input_path, output_path)
@@ -36,8 +35,8 @@ def get_args():
     if len(args) == 3:
         input_arg = args[1]
         output_args = args[2]
-        input_path = "./images/input_images/%s/" % (input_arg)
-        output_path = "./images/output_images/%s/" % (output_args)
+        input_path = "./images/input/%s/" % (input_arg)
+        output_path = "./images/output/%s/" % (output_args)
         print(input_path, output_path)
         return input_path, output_path
     else:
@@ -50,7 +49,7 @@ def main():
     for file_name in ls_file_name:
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print(file_name)
-        super_resolution(input_path, output_path, file_name)
+        copy_exif(input_path, output_path, file_name)
 
 
 if __name__ == '__main__':

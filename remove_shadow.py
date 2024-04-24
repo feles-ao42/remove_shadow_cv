@@ -1,10 +1,7 @@
 import subprocess as sp
-import sys
+
 import cv2
 import numpy as np
-
-input_path = ""
-output_path = ""
 
 
 def make_ls_list(input_path):
@@ -16,7 +13,10 @@ def make_ls_list(input_path):
     return ls_file_name
 
 
-def brighten_shadows(image_path, output_path):
+def brighten_shadows(image_path, output_path, file_name):
+    image_path = image_path + file_name
+    output_path = output_path + file_name
+
     # 画像を読み込み
     image = cv2.imread(image_path)
     # グレースケールに変換
@@ -47,8 +47,8 @@ def brighten_shadows(image_path, output_path):
 
 def get_args():
     additional_path = ''
-    input_path = 'images/input/' + additional_path
-    output_path = 'images/output/' + additional_path
+    input_path = 'images/input/winter_building_GSD4/' + additional_path
+    output_path = 'images/output/winter_building_GSD4/' + additional_path
     return input_path, output_path
 
 
@@ -57,10 +57,8 @@ def main():
     ls_file_name = make_ls_list(input_path)
     for file_name in ls_file_name:
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print(file_name)
-        input_path = input_path + file_name
-        output_path = output_path + file_name
-        brighten_shadows(input_path, output_path)
+        print('Prosessing file name is : ', file_name)
+        brighten_shadows(input_path, output_path, file_name)
 
 
 if __name__ == '__main__':
