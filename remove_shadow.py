@@ -40,15 +40,16 @@ def brighten_shadows(image_path, output_path, file_name):
 
     # 処理した画像を保存
     cv2.imwrite(output_path, brightened_image)
+    cv2.imwrite(output_path, brightened_image)
     print(f"Image saved to {output_path}")
 
     return brightened_image
 
 
 def get_args():
-    additional_path = ''
-    input_path = 'images/input/winter_building_GSD4/' + additional_path
-    output_path = 'images/output/winter_building_GSD4/' + additional_path
+    additional_path = 'winter_building_GSD2/'
+    input_path = 'images/input/' + additional_path
+    output_path = 'images/output/' + additional_path
     return input_path, output_path
 
 

@@ -40,7 +40,7 @@ def get_args():
         print(input_path, output_path)
         return input_path, output_path
     else:
-        print("Usage: python3 copy_exif.py [type] [magnification]")
+        print("Usage: python3 copy_exif.py [input_path] [output_path]")
 
 
 def main():
